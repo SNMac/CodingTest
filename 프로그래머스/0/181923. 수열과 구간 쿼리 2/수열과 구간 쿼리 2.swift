@@ -8,9 +8,9 @@ func solution(_ arr:[Int], _ queries:[[Int]]) -> [Int] {
         let e = query[1]
         let k = query[2]
         
-        for j in s...e {
-            if arr[j] > k && arr[j] < answer[index] {
-                answer[index] = arr[j]
+        for i in s...e {
+            if arr[i] > k && arr[i] < answer[index] {
+                answer[index] = arr[i]
             }
         }
         if answer[index] == 1_000_001 {
