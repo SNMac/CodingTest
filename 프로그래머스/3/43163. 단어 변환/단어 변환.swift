@@ -4,7 +4,7 @@ func solution(_ begin:String, _ target:String, _ words:[String]) -> Int {
     var isVisited = [Bool](repeating: false, count: words.count)
     var queue = [(step: 0, currWord: begin)]
     
-    func canTransferable(_ compare1: String, _ compare2: String) -> Bool {
+    func canConvertable(_ compare1: String, _ compare2: String) -> Bool {
         return zip(compare1, compare2).filter { $0 != $1 }.count == 1
     }
     
@@ -21,7 +21,7 @@ func solution(_ begin:String, _ target:String, _ words:[String]) -> Int {
         }
         
         for (i, word) in words.enumerated() {
-            if !isVisited[i] && canTransferable(currWord, word) {
+            if !isVisited[i] && canConvertable(currWord, word) {
                 isVisited[i] = true
                 queue.append((step: currStep + 1, currWord: word))
             }
