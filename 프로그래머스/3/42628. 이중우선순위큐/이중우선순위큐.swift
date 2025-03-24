@@ -4,34 +4,28 @@ func solution(_ operations:[String]) -> [Int] {
     var queue = [Int]()
     
     for operation in operations {
-        let splitOper = operation.split(separator: " ")
-        let oper = splitOper.first!
-        let num = Int(splitOper.last!)
+        let splited = operation.split(separator: " ")
+        let oper = splited.first!
+        let num = Int(splited.last!)!
+        
         if oper == "I" {
             // 큐에 주어진 숫자 삽입
-            queue.append(num!) 
-            
-        } else {  // oper.first! == "D"
+            queue.append(num)
+        } else {  // oper == "D"
             if num == 1 {
                 // 큐에서 최댓값 삭제
-                if let max = queue.max() {
-                    let index = queue.firstIndex(of: max)!
-                    queue.remove(at: index)
-                }
-                
-            } else {
+                queue.sort(by: <)
+                queue.popLast()
+            } else if num == -1 {
                 // 큐에서 최솟값 삭제
-                if let min = queue.min() {
-                    let index = queue.firstIndex(of: min)!
-                    queue.remove(at: index)
-                }
+                queue.sort(by: >)
+                queue.popLast()
             }
         }
     }
     
-    if queue.count == 0 {
-        return [0, 0]
-    }
+    let max = queue.max() ?? 0
+    let min = queue.min() ?? 0
     
-    return [queue.max()!, queue.min()!]
+    return [max, min]
 }
