@@ -30,11 +30,11 @@ func solution(_ n:Int, _ edge:[[Int]]) -> Int {
             }
         }
         
-        currDist += 1
-        currNodes = nodes
+        // 다음 반복 준비
+        currDist += 1  // 거리 + 1
+        currNodes = nodes  // 도착 노드 => 출발 노드
     }
     
     let max = answerDic.values.max()
     return answerDic.filter { $0.value == max }.count
 }
-
