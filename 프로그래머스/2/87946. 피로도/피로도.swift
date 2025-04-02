@@ -1,30 +1,22 @@
 import Foundation
 
 func solution(_ k:Int, _ dungeons:[[Int]]) -> Int {
-    var answer = [Int]()
+    var answer = 0
     var visited = [Bool](repeating: false, count: dungeons.count)
     
-    func dfs(tired: Int, index: Int, count: Int) {
-        let minNeedTired = dungeons[index].first!
+    func dfs(currTired: Int, index: Int, count: Int) {
         let consumeTired = dungeons[index].last!
+        let afterTired = currTired - consumeTired    
         
-        if tired < minNeedTired {
-            answer.append(count - 1)
-            return
+        if answer < count {
+            answer = count
         }
-        
-        if count == dungeons.count {
-            answer.append(count)
-            return
-        }
-        
-        let currTired = tired - consumeTired
         
         for i in 0..<dungeons.count {
-            
-            if !visited[i] {
+            let targetMinNeedTired = dungeons[i].first!
+            if !visited[i] && afterTired >= targetMinNeedTired {
                 visited[i] = true
-                dfs(tired: currTired, index: i, count: count + 1)
+                dfs(currTired: afterTired, index: i, count: count + 1)
                 visited[i] = false
             }
         }
@@ -32,10 +24,10 @@ func solution(_ k:Int, _ dungeons:[[Int]]) -> Int {
     
     for i in 0..<dungeons.count {
         visited[i] = true
-        dfs(tired: k, index: i, count: 1)
+        dfs(currTired: k, index: i, count: 1)
         visited[i] = false
     }
     
     
-    return answer.max()!
+    return answer
 }
