@@ -21,7 +21,6 @@ func solution(_ genres:[String], _ plays:[Int]) -> [Int] {
     for genre in sortedTotalPlayDict {
         genreIndexDic[genre.key]!.sort(by: { $0.play > $1.play })
     }
-    print(genreIndexDic)
     
     for element in sortedTotalPlayDict {
         for song in genreIndexDic[element.key]!.prefix(2) {
