@@ -7,6 +7,7 @@ func solution(_ id_list:[String], _ report:[String], _ k:Int) -> [Int] {
     var reportDict = [String: [String]]()
     /// [유저 ID: 신고당한 횟수]
     var reportedIDDict = [String: Int]()
+    /// 처리 결과 메일 받은 횟수
     var answer = [Int](repeating: 0, count: id_list.count)
     
     report.forEach {
@@ -22,9 +23,11 @@ func solution(_ id_list:[String], _ report:[String], _ k:Int) -> [Int] {
     }
     
     for (i, userID) in id_list.enumerated() {
+        // 유저 ID가 신고한 ID 배열 가져옴
         guard let reportedIDList = reportDict[userID] else { continue }
         
         for reportedID in reportedIDList {
+            // 신고한 ID 배열에서 k번 이상이면 처리 결과 메일 +1
             if let reportedCount = reportedIDDict[reportedID], reportedCount >= k {
                 answer[i] += 1
             }
