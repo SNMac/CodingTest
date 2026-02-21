@@ -1,26 +1,33 @@
 import Foundation
 
 func solution(_ priorities: [Int], _ location: Int) -> Int {
-    var stack: [(index: Int, priority: Int)] = []
-    for (index, i) in priorities.enumerated() {
-        stack.append((index, i))
-    }
+    var localPriorities = priorities
+    var queue: [(priority: Int, isTarget: Bool)] = []
     
-    var sortedPriority = priorities.sorted(by: { $0 > $1 })
-    
-    var executionOrder = 1
-    while !stack.isEmpty {
-        if stack.first?.index == location && stack.first?.priority == sortedPriority.first {
-            return executionOrder
-        }
-        if stack.first?.priority == sortedPriority.first {
-            stack.removeFirst()
-            sortedPriority.removeFirst()
-            executionOrder += 1
+    for (index, priority) in priorities.enumerated() {
+        if index == location {
+            queue.append((priority, true))
         } else {
-            let dequeued = stack.removeFirst()
-            stack.append(dequeued)
+            queue.append((priority, false))
         }
     }
-    return executionOrder
+    
+    var times = 0
+    while !queue.isEmpty {
+        let maxPriority = localPriorities.max()
+        while queue.first!.priority != maxPriority {
+            let first = queue.removeFirst()
+            queue.append(first)
+        }
+        
+        times += 1
+        let deleteIndex = localPriorities.firstIndex(of: maxPriority!)
+        localPriorities.remove(at: deleteIndex!)
+        let executed = queue.removeFirst()
+        if executed.isTarget {
+            return times
+        }
+    }
+    
+    return times
 }
