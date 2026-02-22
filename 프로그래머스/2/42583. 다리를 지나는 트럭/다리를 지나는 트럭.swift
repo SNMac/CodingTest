@@ -1,35 +1,37 @@
 import Foundation
 
 func solution(_ bridge_length: Int, _ weight: Int, _ truck_weights: [Int]) -> Int {
+    var waitingTrucks: [Int] = truck_weights
+    var crossingTrucks: [(truckWeight: Int, elapsed: Int)] = []
+    var crossedTrucks: [Int] = []
+    var timeElapsed = 0
     
-    let bridgeAllowedWeight = weight
-    var truckWeightsToPass: [Int] = truck_weights
-    var truckWeightsOnBridge: [Int] = []
-    var trucksOnBridgeElapesd: [Int] = []
-    var passedTruckWeights: [Int] = []
-    
-    var elapsed = 0
-    let totalTruckCounts = truck_weights.count
-    while passedTruckWeights.count != totalTruckCounts {
-        elapsed += 1
-        
-        var isPassed = false
-        for index in trucksOnBridgeElapesd.indices {
-            trucksOnBridgeElapesd[index] += 1
-            if trucksOnBridgeElapesd[index] > bridge_length {
-                passedTruckWeights.append(truckWeightsOnBridge.removeFirst())
-                isPassed = true
-            }
+    while crossedTrucks.count != truck_weights.count {
+        // 경과 시간 추가
+        timeElapsed += 1
+        for i in crossingTrucks.indices {
+            crossingTrucks[i].elapsed += 1
         }
-        if isPassed { trucksOnBridgeElapesd.removeFirst() }
         
-        let trucksOnBridgeWeights = truckWeightsOnBridge.reduce(0, { $0 + $1 })
-        if !truckWeightsToPass.isEmpty && (trucksOnBridgeWeights + truckWeightsToPass.first! <= bridgeAllowedWeight) {
-            let truckToCross = truckWeightsToPass.removeFirst()
-            truckWeightsOnBridge.append(truckToCross)
-            trucksOnBridgeElapesd.append(1)
+        // 트럭이 다리를 지났는지 확인
+        if let first = crossingTrucks.first, first.elapsed == bridge_length {
+            crossedTrucks.append(first.truckWeight)
+            crossingTrucks.removeFirst()
+        }
+
+        // 다리에 트럭이 올라갈 수 있는지 확인
+        if crossingTrucks.count < bridge_length {
+            let crossingTruckWeights = crossingTrucks.reduce(0, { $0 + $1.truckWeight })
+            if crossingTruckWeights < weight {
+                if let first = waitingTrucks.first {
+                    if crossingTruckWeights + first <= weight {
+                    waitingTrucks.removeFirst()
+                    crossingTrucks.append((first, 0))
+                    }
+                }
+            }
         }
     }
     
-    return elapsed
+    return timeElapsed
 }
