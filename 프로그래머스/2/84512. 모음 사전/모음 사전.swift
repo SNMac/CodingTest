@@ -1,34 +1,27 @@
 import Foundation
 
-func solution(_ word: String) -> Int {    
+func solution(_ word: String) -> Int {
     var count = 0
+    var result = 0
     
     let letters = ["A", "E", "I", "O", "U"]
-    var visited: [[Bool]] = .init(repeating: [false, false, false, false, false],
-                                  count: 5)
-    var isFound = false
-    func dfs(_ currLetter: String, _ depth: Int, _ index: Int) {
-        if isFound { return }
-        if depth > 4 { return }
-        if visited[depth][index] { return }
-        
-        count += 1
-        let newCurrLetter = currLetter + letters[index]
-        if newCurrLetter == word {
-            isFound = true
+    func dfs(_ currLetter: String) {
+        if currLetter == word {
+            result = count
             return
         }
         
-        visited[depth][index] = true
-        for (index, letter) in letters.enumerated() {
-            dfs(newCurrLetter, depth + 1, index)
+        if currLetter.count >= 5 { return }
+        
+        for letter in letters {
+            if result != 0 { return }
+            count += 1
+            dfs(currLetter + letter)
         }
-        visited[depth][index] = false
+        
     }
     
-    for i in letters.indices {
-        dfs("", 0, i)
-    }
+    dfs("")
     
-    return count
+    return result
 }
