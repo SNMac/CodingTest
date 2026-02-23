@@ -1,27 +1,28 @@
 import Foundation
 
-func solution(_ k:Int, _ dungeons:[[Int]]) -> Int {
-    var answer = 0
-    var visited = [Bool](repeating: false, count: dungeons.count)
+func solution(_ k: Int, _ dungeons: [[Int]]) -> Int {
+    var result = 0
     
-    func dfs(currTired: Int, count: Int) {  
-        if answer < count {
-            answer = count
-        }
+    var visited: [Bool] = .init(repeating: false, count: dungeons.count)
+    func dfs(_ fatigue: Int, _ index: Int, _ travelled: Int) {        
+        if visited[index] { return }
         
-        for i in 0..<dungeons.count {
-            let targetMinNeedTired = dungeons[i][0]
-            let consumeTired = dungeons[i][1]
-            
-            if !visited[i] && currTired >= targetMinNeedTired {
-                visited[i] = true
-                dfs(currTired: currTired - consumeTired, count: count + 1)
-                visited[i] = false
-            }
+        let dungeon = dungeons[index]
+        if dungeon[0] > fatigue { return }
+        
+        result = max(result, travelled + 1)
+        
+        visited[index] = true
+        let newFatigue = fatigue - dungeon[1]
+        for i in dungeons.indices {
+            dfs(newFatigue, i, travelled + 1)
         }
+        visited[index] = false
     }
     
-    dfs(currTired: k, count: 0)    
+    for i in dungeons.indices {
+        dfs(k, i, 0)
+    }
     
-    return answer
+    return result
 }
