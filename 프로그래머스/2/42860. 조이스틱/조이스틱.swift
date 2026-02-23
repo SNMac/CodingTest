@@ -6,7 +6,7 @@ func solution(_ name: String) -> Int {
     var upDown = 0
     var leftRight = nameChar.count - 1
     
-    func calcMove(_ char: Character) -> Int {
+    func calcUpDown(_ char: Character) -> Int {
         // 위로 이동: char - 65
         // 아래로 이동: 91 - char
         let upMove = Int(char.asciiValue! - 65)
@@ -15,7 +15,7 @@ func solution(_ name: String) -> Int {
     }
     
     for index in nameChar.indices {
-        upDown += calcMove(nameChar[index])
+        upDown += calcUpDown(nameChar[index])
         
         var endOfAIndex = index + 1
         while endOfAIndex < nameChar.count && nameChar[endOfAIndex] == "A" {
