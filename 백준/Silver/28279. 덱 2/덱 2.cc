@@ -1,15 +1,16 @@
 #include <iostream>
+#include <string>
 
 #define MAX 2000001
 
 using namespace std;
 
-class Deque {
+class Deck {
     int* arr;
     int f, b;
 public:
-    Deque();
-    ~Deque() {delete arr;}
+    Deck();
+    ~Deck() {delete arr;}
     void pushFront(int x) {arr[f--] = x;}  // 1
     void pushBack(int x) {arr[++b] = x;}  // 2
     int popFront() {return getSize() == 0 ? -1 : arr[++f];}  // 3
@@ -20,7 +21,7 @@ public:
     int getBack() {return getSize() == 0 ? -1 : arr[b];}  // 8
 };
 
-Deque::Deque() {
+Deck::Deck() {
     arr = new int[MAX];
     f = MAX / 2;
     b = MAX / 2;
@@ -30,7 +31,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    Deque d;
+    Deck d;
     int n;
     cin >> n;
     for (int i = 0; i < n; i++) {
