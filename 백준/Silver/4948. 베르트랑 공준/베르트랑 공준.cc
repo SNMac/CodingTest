@@ -17,7 +17,7 @@ int main() {
         for (int i = 2; i <= sqrt(2 * n); i++) {
             if (!arr[i])
                 continue;
-            for (int j = 1; i * j <= 2 * n; j++)
+            for (int j = 2; i * j <= 2 * n; j++)
                 arr[i * j] = false;
         }
 
