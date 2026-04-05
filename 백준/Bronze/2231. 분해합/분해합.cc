@@ -8,16 +8,14 @@ int main() {
     cin >> n;
 
     int answer = 0;
-
     for (int x = 1; x <= n - 1; x++) {
-        int sum = 0;
+        int sum = x;
         int temp = x;
-        for (int i = 6; i >= 0; i--) {
-            int power = (int)pow(10, i);
-            sum += temp / power;
-            temp %= power;
+        while(temp) {
+            sum += temp % 10;
+            temp /= 10;
         }
-        if (sum + x == n) {
+        if (sum == n) {
             answer = x;
             break;
         }
