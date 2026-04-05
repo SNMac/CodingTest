@@ -4,35 +4,24 @@
 
 using namespace std;
 
-bool cmp(pair<int, int> a, pair<int, int> b) {
-    return a.second < b.second;
-}
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int n;
     cin >> n;
-    vector<pair<int, int>> v;
+    vector<int> v1;
+    vector<int> v2;
     for (int i = 0; i < n; i++) {
         int x;
         cin >> x;
-        v.push_back(make_pair(x, i));
+        v1.push_back(x);
+        v2.push_back(x);
     }
-
-    sort(v.begin(), v.end());
-    int count = 0;
-    for (int i = 0; i < n; i++) {
-        if (i != n - 1 && v[i].first == v[i + 1].first) {
-            v[i].first = count;
-            continue;
-        }
-        v[i].first = count;
-        count++;
-    }
-    sort(v.begin(), v.end(), cmp);
+    
+    sort(v1.begin(), v1.end());
+    v1.erase(unique(v1.begin(), v1.end()), v1.end());
 
     for (int i = 0; i < n; i++)
-        cout << v[i].first << ' ';
+        cout << lower_bound(v1.begin(), v1.end(), v2[i]) - v1.begin() << ' ';
     cout << '\n';
 }
