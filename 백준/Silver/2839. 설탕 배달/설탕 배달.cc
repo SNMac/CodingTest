@@ -5,10 +5,8 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int count = 0;
-    int rest = 0;
-    count = n / 5;
-    rest = n % 5;
+    int count = n / 5;
+    int rest = n % 5;
     if (count == 0) {
         switch (rest) {
             case 3 :
