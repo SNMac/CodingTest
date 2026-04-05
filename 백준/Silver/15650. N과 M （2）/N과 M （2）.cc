@@ -3,12 +3,12 @@
 using namespace std;
 
 int n, m;
+int arr[9];
 bool isUsed[9];
-int arr[8];
 
 void dfs(int cur_digit) {
-    if (cur_digit == m) {
-        for (int i = 0; i < m; i++)
+    if (cur_digit == m + 1) {
+        for (int i = 1; i <= m; i++)
             cout << arr[i] << ' ';
         cout << '\n';
         return;
@@ -28,5 +28,5 @@ int main() {
     cin.tie(nullptr);
 
     cin >> n >> m;
-    dfs(0);
+    dfs(1);
 }
