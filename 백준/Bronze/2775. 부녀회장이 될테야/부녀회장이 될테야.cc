@@ -7,9 +7,8 @@ int apart(int k, int n) {
         return n;
     else {
         int ret = 0;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++)
             ret += apart(k - 1, i);
-        }
         return ret;
     }
 }
