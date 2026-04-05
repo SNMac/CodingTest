@@ -32,6 +32,8 @@ int main() {
             hashm_freq[word]++;
         }
     }
+
+    v.reserve(hashm_freq.size());
     for (const auto& it : hashm_freq)
         v.emplace_back(it.first, it.second);
     sort(v.begin(), v.end(), cmp);
