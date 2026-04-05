@@ -2,6 +2,13 @@
 
 using namespace std;
 
+int gcd(int a, int b) {
+    int r = a % b;
+    if (!r)
+        return b;
+    return gcd(b, r);
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -10,25 +17,7 @@ int main() {
     for (int i = 0; i < t; i++) {
         int a, b;
         cin >> a >> b;
-        int minN, MAXN;
-        if (a > b) {
-            MAXN = a;
-            minN = b;
-        } else {
-            MAXN = b;
-            minN = a;
-        }
-        int multiple = minN;
-        int m = 1;
-        while(multiple < MAXN)
-            multiple = minN * m++;
-        while(true) {
-            if (!(multiple % MAXN)) {
-                cout << multiple << '\n';
-                break;
-            } else {
-                multiple = minN * m++;
-            }
-        }
+        int G = gcd(a, b);
+        cout << a * b / G << '\n';
     }
 }
