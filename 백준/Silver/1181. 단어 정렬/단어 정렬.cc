@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>
 
@@ -20,11 +21,13 @@ int main() {
     for (int i = 0; i < n; i++) {
         string input;
         cin >> input;
-        if (find(v.begin(), v.end(), input) == v.end())
-            v.push_back(input);
+        v.push_back(input);
     }
     sort(v.begin(), v.end(), cmp);
 
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < v.size(); i++) {
+        if (i != 0 && v[i - 1] == v[i])
+            continue;
         cout << v[i] << '\n';
+    }
 }
