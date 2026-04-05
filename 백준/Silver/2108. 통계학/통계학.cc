@@ -1,7 +1,5 @@
 #include <iostream>
 #include <iomanip>
-#include <cmath>
-#include <cfloat>
 #include <algorithm>
 
 using namespace std;
@@ -18,6 +16,7 @@ int main() {
         avg += input[i];
         freq[input[i] + 4000]++;
     }
+    
     avg /= n;
     sort(input, input + n);
 
