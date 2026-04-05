@@ -4,11 +4,8 @@
 
 using namespace std;
 
-bool cmp(const tuple<int, string, int> &a, const tuple<int, string, int> &b) {
-    if (get<0>(a) == get<0>(b))
-        return get<2>(a) < get<2>(b);
-    else
-        return get<0>(a) < get<0>(b);
+bool cmp(const pair<int, string> &a, const pair<int, string> &b) {
+    return a.first < b.first;
 }
 
 int main() {
@@ -16,16 +13,16 @@ int main() {
     cin.tie(NULL);
     int n;
     cin >> n;
-    vector<tuple<int, string, int>> v;
+    vector<pair<int, string>> v;
     for (int i = 0; i < n; i++) {
         int age;
         string name;
         cin >> age >> name;
-        v.push_back(make_tuple(age, name, i));
+        v.push_back(make_pair(age, name));
     }
 
-    sort(v.begin(), v.end(), cmp);
+    stable_sort(v.begin(), v.end(), cmp);
 
     for (int i = 0; i < v.size(); i++)
-        cout << get<0>(v[i]) << ' ' << get<1>(v[i]) << '\n';
+        cout << v[i].first << ' ' << v[i].second << '\n';
 }
