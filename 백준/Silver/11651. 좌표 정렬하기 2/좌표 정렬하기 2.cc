@@ -4,7 +4,7 @@
 
 using namespace std;
 
-bool comp(pair<int, int> v1, pair<int, int> &v2) {
+bool comp(pair<int, int> &v1, pair<int, int> &v2) {
     if (v1.second == v2.second)
         return v1.first < v2.first;
     else
