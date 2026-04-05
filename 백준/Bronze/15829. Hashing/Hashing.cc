@@ -8,8 +8,8 @@ long long hashing(int l, const string& str) {
     long long result = 0;
     long long r = 1;
     for (int i = 0; i < l; i++) {
-        result += ((str[i] - 'a' + 1) * r) % M;
-        r *= 31 % M;
+        result = (result + (str[i] - 'a' + 1) * r) % M;
+        r = (r * 31) % M;
     }
     return result;
 }
