@@ -6,23 +6,18 @@ using namespace std;
 int main() {
     int m, n;
     cin >> m >> n;
+    if (m == 1)
+        m++;
 
     for (int i = m; i <= n; i++) {
-        if (i == 1)
-            continue;
         int count = 0;
-        bool prime = true;
         for (int j = 1; j <= sqrt(i); j++) {
-            if (i % j == 0) {
-                if (count == 0)
-                    count++;
-                else {
-                    prime = false;
-                    break;
-                }
-            }
+            if (i % j == 0)
+                count++;
+            if (count > 1)
+                break;
         }
-        if (prime)
+        if (count == 1)
             cout << i << '\n';
     }
 }
