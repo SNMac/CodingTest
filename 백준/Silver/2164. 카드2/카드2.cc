@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 
 using namespace std;
 
@@ -8,14 +7,14 @@ int main() {
     cin.tie(nullptr);
     int n;
     cin >> n;
-    queue<int> q;
-    for (int i = 1; i <= n; i++)
-        q.push(i);
-
-    while (q.size() != 1) {
-        q.pop();
-        q.push(q.front());
-        q.pop();
+    if (n == 1) {
+        cout << 1 << '\n';
+        return 0;
     }
-    cout << q.front() << '\n';
+    int powOfTwo = 1;
+    while(powOfTwo < n)
+        powOfTwo = powOfTwo << 1;
+    powOfTwo = powOfTwo >> 1;
+    int result = (n - powOfTwo) * 2;
+    cout << result << '\n';
 }
