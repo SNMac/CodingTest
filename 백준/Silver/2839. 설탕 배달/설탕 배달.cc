@@ -5,30 +5,31 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int count = n / 5;
-    int rest = n % 5;
-    if (count < 2) {
-        if (n == 4 || n == 7)
-            count = -1;
-        else if (n == 3 || n == 6 || n == 9)
-            count = n / 3;
-        else if (n == 8)
-            count++;
-    } else {
-        switch (rest) {
-            case 1 :
-                count++;
-                break;
-            case 2 :
-                count += 2;
-                break;
-            case 3 :
-                count++;
-                break;
-            case 4 :
-                count += 2;
-                break;
-        }
+    if (n == 4 || n == 7) {
+        cout << -1 << endl;
+        return 0;
+    }
+    int count;
+    switch (n % 5) {
+        case 0 :
+            count = n / 5;
+            break;
+
+        case 1 :
+            count = n / 5 + 1;
+            break;
+
+        case 2 :
+            count = n / 5 + 2;
+            break;
+
+        case 3 :
+            count = n / 5 + 1;
+            break;
+
+        case 4 :
+            count = n / 5 + 2;
+            break;
     }
     cout << count << endl;
 }
