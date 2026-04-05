@@ -4,12 +4,12 @@
 
 using namespace std;
 
-class Deck {
+class Deque {
     int* arr;
     int f, b;
 public:
-    Deck();
-    ~Deck() {delete arr;}
+    Deque();
+    ~Deque() {delete arr;}
     void pushFront(int x) {arr[f--] = x;}  // 1
     void pushBack(int x) {arr[++b] = x;}  // 2
     int popFront() {return getSize() == 0 ? -1 : arr[++f];}  // 3
@@ -20,7 +20,7 @@ public:
     int getBack() {return getSize() == 0 ? -1 : arr[b];}  // 8
 };
 
-Deck::Deck() {
+Deque::Deque() {
     arr = new int[MAX];
     f = MAX / 2;
     b = MAX / 2;
@@ -30,7 +30,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    Deck d;
+    Deque d;
     int n;
     cin >> n;
     for (int i = 0; i < n; i++) {
