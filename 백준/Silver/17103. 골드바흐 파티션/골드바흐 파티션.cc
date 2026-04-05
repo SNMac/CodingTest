@@ -1,16 +1,15 @@
 #include <iostream>
 
+#define MAX 1000001
 using namespace std;
 
-int prime[1000001];
+bool prime[MAX];
 
 void primeInit() {
-    prime[0] = 0; prime[1] = 0;
-    for (int i = 2; i < 1000001; i++)
-        prime[i] = i;
-
-    for (int i = 2; i < 1000001; i++) {
-        if (prime[i] == 0)
+    fill_n(prime, MAX, true);
+    prime[0] = prime[1] = false;
+    for (int i = 2; i < MAX; i++) {
+        if (!prime[i])
             continue;
 
         bool isPrime = true;
@@ -21,8 +20,8 @@ void primeInit() {
             }
         }
         if (isPrime) {
-            for (int j = i + i; j < 1000001; j += i) {
-                prime[j] = 0;
+            for (int j = i + i; j < MAX; j += i) {
+                prime[j] = false;
             }
         }
     }
@@ -31,7 +30,7 @@ void primeInit() {
 int countGold(int n) {
     int total = 0;
     for (int i = 2; i <= n / 2; i++) {
-        if (prime[i] && prime[n - i])
+        if (prime[i] & prime[n - i])
             total++;
     }
     return total;
