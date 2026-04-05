@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 #define MAX 2000001
 
