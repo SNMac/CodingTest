@@ -6,6 +6,8 @@ int n, k, result = -1, cnt = 1;
 int a[500000];
 
 void merge(int p, int q, int r) {
+    if (cnt > k)
+        return;
     int i = p, j = q + 1, t = 1;
     int tmp[r - p + 1];
     while (i <= q && j <= r) {
@@ -20,10 +22,14 @@ void merge(int p, int q, int r) {
         tmp[t++] = a[j++];
     i = p, t = 1;
     while(i <= r) {
-        if (result == -1 && cnt >= k)
+        if (result == -1 && cnt >= k) {
             result = tmp[t];
-        else if (cnt < k)
             cnt++;
+            return;
+        }
+        else if (cnt < k) {
+            cnt++;
+        }
         a[i++] = tmp[t++];
     }
 }
