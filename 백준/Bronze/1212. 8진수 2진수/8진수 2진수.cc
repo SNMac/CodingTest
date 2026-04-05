@@ -6,7 +6,6 @@
 using namespace std;
 
 string octal;
-string binary;
 
 int main() {
     FAST_IO
@@ -19,29 +18,38 @@ int main() {
 
     for (int i = 0; i < octal.length(); i++) {
         int digit = octal[i] - '0';
+        int bin[3];
 
         if (digit / 4) {
-            binary += '1';
+            bin[2] = 1;
             digit %= 4;
         } else {
-            binary += '0';
+            bin[2] = 0;
         }
 
         if (digit / 2) {
-            binary += '1';
+            bin[1] = 1;
             digit %= 2;
         } else {
-            binary += '0';
+            bin[1] = 0;
         }
 
         if (digit) {
-            binary += '1';
+            bin[0] = 1;
         } else {
-            binary += '0';
+            bin[0] = 0;
+        }
+
+        if (i == 0) {
+            if (bin[2]) {
+                cout << bin[2] << bin[1] << bin[0];
+            } else if (bin[1]) {
+                cout << bin[1] << bin[0];
+            } else {
+                cout << bin[0];
+            }
+        } else {
+            cout << bin[2] << bin[1] << bin[0];
         }
     }
-
-    while (binary[0] == '0')
-        binary.erase(0, 1);
-    cout << binary << '\n';
 }
