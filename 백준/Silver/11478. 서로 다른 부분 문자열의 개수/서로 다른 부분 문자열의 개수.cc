@@ -11,8 +11,11 @@ int main() {
     unordered_set<string> part;
     int len = 1;
     while(len <= s.length()) {
-        for (int i = 0; i < s.length(); i++)
+        for (int i = 0; i < s.length(); i++) {
+            if (i + len > s.length())
+                break;
             part.insert(s.substr(i, len));
+        }
         len++;
     }
     cout << part.size() << '\n';
