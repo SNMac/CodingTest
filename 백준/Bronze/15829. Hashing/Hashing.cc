@@ -3,7 +3,7 @@
 
 using namespace std;
 
-unsigned long hashing(int l, const string& str) {
+unsigned long long hashing(int l, const string& str) {
     int result = 0;
     for (int i = 0; i < l; i++)
         result += ((int)str[i] - 96) * (int)pow(31, i);
