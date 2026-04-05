@@ -7,7 +7,7 @@ void search(string t, string w[], int wSize, int& count) {
     for (int i = 0; i < wSize; i++) {
         int index = t.find(w[i]);
         while (index != string::npos) {
-            if (i == 7) {
+            if (w[i] == "z=") {
                 if (t[index - 1] == 'd') {
                     index = t.find(w[i], index + w[i].length());
                     continue;
