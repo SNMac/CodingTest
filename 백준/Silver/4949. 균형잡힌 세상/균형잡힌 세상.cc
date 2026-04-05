@@ -37,7 +37,7 @@ int main() {
                     break;
             }
         }
-        if (exit || !s.empty())
+        if (exit | !s.empty())
             cout << "no\n";
         else
             cout << "yes\n";
