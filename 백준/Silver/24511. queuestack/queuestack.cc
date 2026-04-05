@@ -1,6 +1,6 @@
 #include <iostream>
-#include <queue>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -12,7 +12,6 @@ int main() {
     queue<int> q;
     int queueCnt = 0;
     int dsStat[100000];
-
     int n;
     cin >> n;
     for (int i = 0; i < n; i++) {
