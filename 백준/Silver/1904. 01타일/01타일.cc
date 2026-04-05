@@ -14,12 +14,11 @@ using namespace std;
 
 unsigned long long dp[1000001];
 
-unsigned long long solve(int n) {
+void solve(int n) {
     dp[1] = 1;
     dp[2] = 2;
     for (int i = 3; i <= n; i++)
         dp[i] = (dp[i - 1] % 15746 + dp[i - 2] % 15746) % 15746;
-    return dp[n];
 }
 
 int main() {
@@ -32,7 +31,8 @@ int main() {
     TIME_START
 #endif
 
-    cout << solve(N) % 15746 << '\n';
+    solve(N);
+    cout << dp[N] << '\n';
 
 #ifdef DEBUG  // clock end
     TIME_END
