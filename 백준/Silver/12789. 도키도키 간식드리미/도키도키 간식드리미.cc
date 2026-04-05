@@ -2,7 +2,6 @@
 #include <stack>
 #include <queue>
 
-#define MAX 1000
 using namespace std;
 
 int main() {
