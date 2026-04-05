@@ -9,7 +9,6 @@ int main() {
     int sizeA, sizeB;
     cin >> sizeA >> sizeB;
     set<int> a;
-    set<int> b;
     for (int i = 0; i < sizeA; i++) {
         int input;
         cin >> input;
@@ -18,14 +17,11 @@ int main() {
     for (int i = 0; i < sizeB; i++) {
         int input;
         cin >> input;
-        b.insert(input);
-    }
-
-    for (auto iter : b) {
-        if (a.find(iter) == a.end())
-            a.insert(iter);
+        if (a.find(input) == a.end())
+            a.insert(input);
         else
-            a.erase(iter);
+            a.erase(input);
+
     }
     cout << a.size() << '\n';
 }
