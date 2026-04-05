@@ -6,19 +6,18 @@
 
 using namespace std;
 
-vector<string> pVec;
-unordered_map<string, int> pMap;
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     int n, m;
     cin >> n >> m;
+    vector<string> pVec(n);
+    unordered_map<string, int> pMap;
     for (int i = 1; i <= n; i++) {
         string input;
         cin >> input;
         pMap.insert({input, i});
-        pVec.push_back(input);
+        pVec[i - 1] = input;
     }
 
     for (int i = 0; i < m; i++) {
