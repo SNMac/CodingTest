@@ -19,4 +19,5 @@ int main() {
             l = arr[i];
     }
     cout << l << " " << h;
+    delete[] arr;
 }
