@@ -35,9 +35,9 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         string input;
-        int k;
         cin >> input;
         if (input == "push") {
+            int k;
             cin >> k;
             cin.ignore();
             q.push(k);
