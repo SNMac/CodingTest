@@ -18,12 +18,12 @@ int main() {
     for (int i = 0; i < n; i++) {
         getline(cin, input);
         if (input == "ENTER") {
-            total += s.size();
             s.clear();
             continue;
         }
+        int temp = s.size();
         s.insert(input);
+        total += s.size() - temp;
     }
-    total += s.size();
     cout << total << '\n';
 }
