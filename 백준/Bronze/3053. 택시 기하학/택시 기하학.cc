@@ -10,8 +10,8 @@ int main() {
     int r;
     cin >> r;
     double euclid = (double)(r * r) * PI;
-    double taxi = (2 * r) * (2 * r) / 2;
+    int taxi = (4 * r * r) >> 1;
     cout << fixed;
     cout.precision(6);
-    cout << euclid << '\n' << taxi << '\n';
+    cout << euclid << '\n' << (double)taxi << '\n';
 }
