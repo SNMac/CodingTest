@@ -3,26 +3,26 @@
 
 using namespace std;
 
-void recur(int f, int t, string& str) {
-    int interval = (t - f) / 3;
-    if (interval == 0)
+void cantor(int n, string& str) {
+    int interval = 1;
+    for (int i = 0; i < n - 1; i++)
+        interval *= 3;
+
+    if (n == 0) {
+        str += '-';
         return;
-    for (int i = f + interval; i < t - interval; i++)
-        str[i] = ' ';
-    recur(f, f + interval, str);
-    recur(t - interval, t, str);
+    }
+    cantor(n - 1, str);
+    for (int i = 0; i < interval; i++)
+        str += ' ';
+    cantor(n - 1, str);
 }
 
 int main() {
     int N = 0;
     while (cin >> N) {
-        int len = 1;
-        for (int i = 0; i < N; i++)
-            len *= 3;
         string str;
-        for (int i = 0; i < len; i++)
-            str += "-";
-        recur(0, len, str);
+        cantor(N, str);
         cout << str << '\n';
     }
 }
