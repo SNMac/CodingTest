@@ -6,15 +6,15 @@
 using namespace std;
 
 int input;
-bool notPrimeNum[MAX_SIZE];
+bool isNotPrimeNum[MAX_SIZE];
 
 int main() {
     FAST_IO
 
     for (int i = 3; i * i < MAX_SIZE; i += 2) {
-        if (!notPrimeNum[i]) {
-            for (int j = 3; i * j < MAX_SIZE; j += 2)
-                notPrimeNum[i * j] = true;
+        if (!isNotPrimeNum[i]) {
+            for (int j = i * i; j < MAX_SIZE; j += i)
+                isNotPrimeNum[j] = true;
         }
     }
 
@@ -24,8 +24,8 @@ int main() {
         if (input == 0)
             break;
 
-        for (int i = 3; i < MAX_SIZE; i += 2) {
-            if (!notPrimeNum[i] && !notPrimeNum[input - i]) {
+        for (int i = 3; i < MAX_SIZE / 2; i += 2) {
+            if (!isNotPrimeNum[i] && !isNotPrimeNum[input - i]) {
                 a = i; b = input - i;
                 break;
             }
