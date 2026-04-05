@@ -1,35 +1,32 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
     int n, m;
     cin >> n >> m;
-    int* arr = new int[n + 1];
-    for (int i = 1; i <= n; i++)
-        arr[i] = i;
+    vector<int> v;
+    v.push_back(0);
 
-    for (int r = 0; r < m; r++) {
+    for (int a = 1; a <= n; a++)
+        v.push_back(a);
+
+    for (int a = 0; a < m; a++) {
+        vector<int> tempV;
         int i, j, k;
         cin >> i >> j >> k;
-        vector<int> v;
-        int vIndex = 0;
-        int begin = i, end = j, repeat = j - i + 1;
-
-        for (int s = 0; s < repeat; s++) {
-            v.push_back(arr[begin]);
-            if (k > end)
-                arr[begin++] = v[vIndex++];
-            else {
-                arr[begin++] = arr[k++];
-            }
-        }
+        for (int b = i; b <= j; b++)
+            tempV.push_back(v[b]);
+        rotate(tempV.begin(), tempV.begin() + (k - i), tempV.end());
+        int tempIndex = 0;
+        for (int b = i; b <= j; b++)
+            v[b] = tempV[tempIndex++];
     }
 
     for (int i = 1; i <= n; i++) {
-        cout << arr[i] << ' ';
+        cout << v[i] << ' ';
     }
     cout << '\n';
-    delete[] arr;
 }
