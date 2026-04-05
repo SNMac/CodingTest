@@ -14,8 +14,7 @@ int main() {
     int startY = 0, startX = 0;
     int min = -1;
     while (cont) {
-        int countB = 0;
-        int countW = 0;
+        int countB = 0, countW = 0;
         for (int y = startY; y < startY + 8; y++) {
             for (int x = startX; x < startX + 8; x++) {
                 if ((y - startY) % 2 == 0) {
@@ -45,6 +44,18 @@ int main() {
                 }
             }
         }
+
+        if (countB < countW) {
+            if (min == -1 || min > countB)
+                min = countB;
+        } else {
+            if (min == -1 || min > countW)
+                min = countW;
+        }
+
+        if (min == 0)
+            break;
+
         if (startX + 8 != m) {
             startX++;
         } else {
@@ -54,16 +65,6 @@ int main() {
             else
                 cont = false;
         }
-
-        if (countB < countW) {
-            if (min == -1 || min > countB)
-                min = countB;
-        } else {
-            if (min == -1 || min > countW)
-                min = countW;
-        }
-        if (min == 0)
-            break;
     }
     cout << min << '\n';
     delete[] board;
