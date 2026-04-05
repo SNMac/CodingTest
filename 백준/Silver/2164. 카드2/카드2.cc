@@ -1,5 +1,5 @@
 #include <iostream>
-#include <deque>
+#include <queue>
 
 using namespace std;
 
@@ -8,14 +8,14 @@ int main() {
     cin.tie(nullptr);
     int n;
     cin >> n;
-    deque<int> dq;
-    for (int i = n; i >= 1; i--)
-        dq.push_back(i);
+    queue<int> q;
+    for (int i = 1; i <= n; i++)
+        q.push(i);
 
-    while (dq.size() != 1) {
-        dq.pop_back();
-        dq.push_front(dq.back());
-        dq.pop_back();
+    while (q.size() != 1) {
+        q.pop();
+        q.push(q.front());
+        q.pop();
     }
-    cout << dq.front() << '\n';
+    cout << q.front() << '\n';
 }
