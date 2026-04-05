@@ -14,14 +14,13 @@ int main() {
         cin >> nv[i];
     sort(nv.begin(), nv.end());
 
-    vector<string> mv(m);
-    for (int i = 0; i < m; i++)
-        cin >> mv[i];
-
+    string input;
     int result = 0;
     for (int i = 0; i < m; i++) {
-        if (binary_search(nv.begin(), nv.end(), mv[i]))
+        cin >> input;
+        if (binary_search(nv.begin(), nv.end(), input))
             result++;
     }
+
     cout << result << '\n';
 }
