@@ -1,12 +1,16 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-unsigned long long hashing(int l, const string& str) {
-    int result = 0;
-    for (int i = 0; i < l; i++)
-        result += ((int)str[i] - 96) * (int)pow(31, i);
+unsigned long hashing(int l, const string& str) {
+    unsigned long result = 0;
+    unsigned long m = 1;
+    for (int i = 0; i < l; i++) {
+        for (int j = 0; j < i; j++)
+            m *= 31;
+        result += (str[i] - 'a' + 1) * m;
+        m = 1;
+    }
     return result % 1234567891;
 }
 
