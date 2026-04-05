@@ -4,13 +4,16 @@
 using namespace std;
 
 int main() {
-    double GPA = 0.0;
-    double totalPoint = 0.0;
+    double GPA = 0;
+    int totalPoint = 0;
     for (int i = 0; i < 20; i++) {
-        string name;
-        double point;
+        string input;
+        int point;
         string grade;
-        cin >> name >> point >> grade;
+        getline(cin, input);
+        size_t blankpos = input.find(' ');
+        point = stoi(input.substr(blankpos + 1, 1));
+        grade = input.substr(blankpos + 5, 2);
         if (grade == "A+") {
             GPA += point * 4.5;
             totalPoint += point;
@@ -38,7 +41,7 @@ int main() {
         } else if (grade == "F") {
             GPA += point * 0.0;
             totalPoint += point;
-        } else { // grade == "P"
+        } else {
             continue;
         }
     }
