@@ -12,7 +12,6 @@ int main() {
     FAST_IO
 
     while (getline(cin, input)) {
-
         for (int i = 0; i < input.length(); i++) {
             if (islower(input[i])) {
                 lower++;
