@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     FAST_IO
 
-    string S, result;
+    string S;
     getline(cin, S);
 
     for (int i = 0; i < S.length(); i++) {
