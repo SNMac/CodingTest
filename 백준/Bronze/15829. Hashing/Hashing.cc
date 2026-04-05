@@ -2,9 +2,9 @@
 
 using namespace std;
 
-unsigned long hashing(int l, const string& str) {
-    unsigned long result = 0;
-    unsigned long m = 1;
+unsigned long long hashing(int l, const string& str) {
+    unsigned long long result = 0;
+    unsigned long long m = 1;
     for (int i = 0; i < l; i++) {
         for (int j = 0; j < i; j++)
             m *= 31;
