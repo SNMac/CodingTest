@@ -7,9 +7,6 @@ int main() {
     string n;
     int b;
     cin >> n >> b;
-    for (auto& it : n) {
-        it = tolower(it);
-    }
 
     int total = 0;
     for (int i = n.length() - 1; i >= 0; i--) {
@@ -19,7 +16,7 @@ int main() {
         }
         int nowIndex = n.length() - 1 - i;
         if (isalpha(n[nowIndex])) {
-            temp *= n[nowIndex] - 'a' + 10;
+            temp *= n[nowIndex] - 'A' + 10;
         } else {
             temp *= n[nowIndex] - '0';
         }
