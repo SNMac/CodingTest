@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-int zero, one;
-
 int fibonacci(int n, int ary[]);
 
 int main(void) {
@@ -9,8 +7,6 @@ int main(void) {
     int memo[41] = {0, };
     scanf("%d", &testcase);
     for (int i = 0; i < testcase; i++) {
-        zero = 0;
-        one = 0;
         scanf("%d", &input);
         if (input == 0) {
             printf("%d %d\n", 1, 0);
