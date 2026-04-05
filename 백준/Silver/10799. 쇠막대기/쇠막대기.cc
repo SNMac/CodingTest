@@ -9,6 +9,7 @@ int main() {
     FAST_IO
 
     string input;
+    input.reserve(100000);
     cin >> input;
     int total = 0;
     int cut = 0;
