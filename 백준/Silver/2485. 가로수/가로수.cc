@@ -22,6 +22,8 @@ int main() {
         if (temp != 0) {
             temp = input - temp;
             diff.push_back(temp);
+        } else {
+
         }
         temp = input;
     }
