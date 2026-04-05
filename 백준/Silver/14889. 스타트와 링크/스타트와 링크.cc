@@ -1,6 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <set>
+#include <limits>
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(NULL);
 
@@ -10,7 +9,7 @@ bool selected[21];
 int S[21][21];
 int N;
 int s_member[10];
-set<int> sl_diff;
+int diff_min = numeric_limits<int>::max();
 
 void dfs(int count, int index) {
     if (count == N / 2) {
@@ -22,22 +21,25 @@ void dfs(int count, int index) {
             }
         }
 
-        vector<int> l_member;
+        int l_member[N / 2];
+        int l_member_size = 0;
         for (int i = 1; i <= N; i++) {
             if (!selected[i])
-                l_member.push_back(i);
+                l_member[l_member_size++] = i;
         }
         int l_stat = 0;
-        for (int i = 0; i < l_member.size() - 1; i++) {
-            for (int j = i + 1; j < l_member.size(); j++) {
+        for (int i = 0; i < l_member_size - 1; i++) {
+            for (int j = i + 1; j < l_member_size; j++) {
                 int l1 = l_member[i], l2 = l_member[j];
                 l_stat += S[l1][l2] + S[l2][l1];
             }
         }
+
         int diff = s_stat - l_stat;
         if (diff < 0)
             diff *= -1;
-        sl_diff.insert(diff);
+        if (diff < diff_min)
+            diff_min = diff;
         return;
     }
 
@@ -60,5 +62,5 @@ int main() {
         }
     }
     dfs(0, 1);
-    cout << *sl_diff.begin() << '\n';
+    cout << diff_min << '\n';
 }
