@@ -11,7 +11,7 @@ bool notPrimeNum[MAX_SIZE];
 int main() {
     FAST_IO
 
-    for (int i = 3; i < MAX_SIZE; i += 2) {
+    for (int i = 3; i * i < MAX_SIZE; i += 2) {
         if (!notPrimeNum[i]) {
             for (int j = 3; i * j < MAX_SIZE; j += 2)
                 notPrimeNum[i * j] = true;
