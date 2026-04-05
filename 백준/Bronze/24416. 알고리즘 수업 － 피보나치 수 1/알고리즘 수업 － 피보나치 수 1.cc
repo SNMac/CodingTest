@@ -1,13 +1,16 @@
 #include <iostream>
+#ifdef DEBUG
+#include <chrono>
+#endif
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(NULL);
 //#define DEBUG
 
 using namespace std;
 #ifdef DEBUG
-#include <chrono>
 using namespace chrono;
 #endif
+
 
 int f[41];
 int fib_count;
