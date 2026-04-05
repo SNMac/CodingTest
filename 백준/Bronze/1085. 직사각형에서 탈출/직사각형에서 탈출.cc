@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -7,25 +8,8 @@ int main() {
     cin.tie(nullptr);
     int x, y, w, h;
     cin >> x >> y >> w >> h;
-    if (x > w / 2 && y > h / 2) {
-        if (w - x < h - y)
-            cout << w - x << '\n';
-        else
-            cout << h - y << '\n';
-    } else if (x > w / 2 && y <= h / 2) {
-        if (w - x < y)
-            cout << w - x << '\n';
-        else
-            cout << y << '\n';
-    } else if (x <= w / 2 && y > h / 2) {
-        if (x < h - y)
-            cout << x << '\n';
-        else
-            cout << h - y << '\n';
-    } else {
-        if (x < y)
-            cout << x << '\n';
-        else
-            cout << y << '\n';
-    }
+    int distW = w - x;
+    int distH = h - y;
+    int arr[] = {x, y, distW, distH};
+    cout << *min_element(arr, arr + 4) << '\n';
 }
