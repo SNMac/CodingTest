@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -11,28 +11,29 @@ int main() {
     for (int i = 0; i < t; i++) {
         int n, m;
         cin >> n >> m;
-        vector<pair<int, int>> v;
+        queue<pair<int, int>> q;
+        priority_queue<int> pq;
         for (int p = 0; p < n; p++) {
             int priority;
             cin >> priority;
-            v.emplace_back(p, priority);
+            q.push({p, priority});
+            pq.push(priority);
         }
 
         int order = 1;
         while(true) {
-            for (int vIndex = 1; vIndex < v.size(); vIndex++) {
-                if (v.front().second < v[vIndex].second) {
-                    v.push_back(v.front());
-                    v.erase(v.begin());
-                    vIndex = 0;
+            if (q.front().second < pq.top()) {
+                q.push(q.front());
+                q.pop();
+            } else {  // q.front() priority > pq.top() priority
+                if (q.front().first == m) {
+                    cout << order << '\n';
+                    break;
+                } else {
+                    q.pop();
+                    pq.pop();
+                    order++;
                 }
-            }
-            if (v.front().first != m) {
-                v.erase(v.begin());
-                order++;
-            } else {
-                cout << order << '\n';
-                break;
             }
         }
     }
