@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stack>
 
 #define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr);
 
@@ -9,20 +10,19 @@ int main() {
     FAST_IO
 
     string input;
-    input.reserve(100000);
     cin >> input;
+    stack<char> s;
     int total = 0;
-    int cut = 0;
     for (int i = 0; i < input.length(); i++) {
         if (input[i] == '(') {
             if (input[i + 1] == ')') {  // 레이저
-                total += cut;
+                total += s.size();
                 i++;
             } else {  // input[i + 1] == '(', 쇠막대기 시작
-                cut++;
+                s.push(input[i]);
             }
         } else {  // input[i] == ')', 쇠막대기 끝
-            cut--;
+            s.pop();
             total++;
         }
     }
