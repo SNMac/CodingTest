@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    cin.tie(nullptr);
     int n, m;
     cin >> n;
     vector<int> ov(n);
@@ -20,8 +20,20 @@ int main() {
         cin >> cv[i];
 
     for (int i = 0; i < m; i++) {
-        auto cmp = binary_search(ov.begin(), ov.end(), cv[i]);
-        if (cmp)
+        int hIndex = ov.size() - 1, lIndex = 0;
+        bool found = false;
+        while(lIndex <= hIndex) {
+            int mIndex = (hIndex + lIndex) / 2;
+            if (cv[i] > ov[mIndex])
+                lIndex = mIndex + 1;
+            else if (cv[i] < ov[mIndex])
+                hIndex = mIndex - 1;
+            else {
+                found = true;
+                break;
+            }
+        }
+        if (found)
             cout << 1 << ' ';
         else
             cout << 0 << ' ';
