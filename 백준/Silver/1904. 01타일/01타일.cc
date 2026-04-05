@@ -12,7 +12,7 @@
 
 using namespace std;
 
-unsigned long long dp[1000001];
+int dp[1000001];
 
 void solve(int n) {
     dp[1] = 1;
