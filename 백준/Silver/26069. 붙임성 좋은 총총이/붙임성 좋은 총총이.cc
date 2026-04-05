@@ -18,9 +18,10 @@ int main() {
         cin >> A >> B;
         auto itA = s.find(A);
         auto itB = s.find(B);
-        if (itA != s.end() || itB != s.end()) {
-            s.insert(A);
+        if (itA != s.end()) {
             s.insert(B);
+        } else if (itB != s.end()) {
+            s.insert(A);
         }
     }
     cout << s.size() << '\n';
