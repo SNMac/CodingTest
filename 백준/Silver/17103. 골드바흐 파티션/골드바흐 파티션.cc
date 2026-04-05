@@ -26,8 +26,11 @@ void primeInit() {
 }
 
 int countGold(int n) {
+    if (n == 4)
+        return 1;
+
     int total = 0;
-    for (int i = 2; i <= n / 2; i++) {
+    for (int i = 3; i <= n / 2; i += 2) {
         if (prime[i] & prime[n - i])
             total++;
     }
