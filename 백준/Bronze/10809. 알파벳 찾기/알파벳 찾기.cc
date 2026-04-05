@@ -1,18 +1,24 @@
 #include <iostream>
 #include <string>
 
+#define FAST_IO ios_base::sync_with_stdio(false); cin.tie(nullptr);
+
 using namespace std;
 
+string input;
+int alpha[26];
+
 int main() {
-    string s;
-    cin >> s;
-    int loc[26]; fill_n(loc, 26, -1);
-    for (int i = 0; i < s.length(); i++) {
-        if (loc[(int)s[i] - 97] != -1)
-            continue;
-        loc[(int)s[i] - 97] = i;
+    FAST_IO
+
+    fill_n(alpha, 26, -1);
+    getline(cin, input);
+    for (int i = 0; i < input.length(); i++) {
+        if (alpha[input[i] - 'a'] == -1)
+            alpha[input[i] - 'a'] = i;
     }
-    for (int i = 0; i < 26; i++)
-        cout << loc[i] << " ";
-    cout << endl;
+
+    for (int i : alpha)
+        cout << i << ' ';
+    cout << '\n';
 }
