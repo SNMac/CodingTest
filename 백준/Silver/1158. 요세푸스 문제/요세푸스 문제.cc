@@ -8,26 +8,19 @@ using namespace std;
 int main() {
     FAST_IO
 
-    queue<int> q1;
-    queue<int> q2;
+    queue<int> q;
     int N, K;
     cin >> N >> K;
     for (int i = 1; i <= N; i++)
-        q1.push(i);
-    while (!q1.empty()) {
+        q.push(i);
+    cout << '<';
+    while (q.size() != 1) {
         for (int j = 1; j < K; j++) {
-            q1.push(q1.front());
-            q1.pop();
+            q.push(q.front());
+            q.pop();
         }
-        q2.push(q1.front());
-        q1.pop();
+        cout << q.front() << ", ";
+        q.pop();
     }
-    cout << '<' << q2.front();
-    while (true) {
-        q2.pop();
-        if (q2.empty())
-            break;
-        cout << ", " << q2.front();
-    }
-    cout << ">\n";
+    cout << q.front() << ">\n";
 }
