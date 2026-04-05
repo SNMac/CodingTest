@@ -13,11 +13,9 @@ int main() {
 
     int N;
     cin >> N;
-    cin.ignore();
     for (int i = 0; i < N; i++) {
         string A, B;
         cin >> A >> B;
-        cin.ignore();
         auto itA = s.find(A);
         auto itB = s.find(B);
         if (itA != s.end() || itB != s.end()) {
