@@ -6,7 +6,6 @@
 using namespace std;
 
 string input;
-int bin[3] = {4, 2, 1};
 
 int main() {
     FAST_IO
@@ -17,9 +16,9 @@ int main() {
         input.insert(0, 1, '0');
 
     for (int i = 0; i < input.length(); i += 3) {
-        int num = (input[i] - '0') * bin[i % 3]
-                + (input[i + 1] - '0') * bin[(i + 1) % 3]
-                + (input[i + 2] - '0') * bin[(i + 2) % 3];
+        int num = (input[i] - '0') * 4
+                + (input[i + 1] - '0') * 2
+                + (input[i + 2] - '0') * 1;
         cout << num;
     }
     cout << '\n';
