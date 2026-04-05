@@ -45,30 +45,25 @@ int main() {
                 }
             }
         }
-        if (startX + 1 + 8 <= m) {
+        if (startX + 8 != m) {
             startX++;
         } else {
             startX = 0;
-            if (startY + 1 + 8 <= n)
+            if (startY + 8 != n)
                 startY++;
             else
                 cont = false;
         }
 
-        if (min == -1) {
-            if (countB < countW)
+        if (countB < countW) {
+            if (min == -1 || min > countB)
                 min = countB;
-            else
-                min = countW;
         } else {
-            if (countB < countW) {
-                if (min > countB)
-                    min = countB;
-            } else {
-                if (min > countW)
-                    min = countW;
-            }
+            if (min == -1 || min > countW)
+                min = countW;
         }
+        if (min == 0)
+            break;
     }
     cout << min << '\n';
     delete[] board;
