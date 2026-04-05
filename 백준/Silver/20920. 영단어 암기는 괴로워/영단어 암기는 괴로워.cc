@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 
@@ -20,7 +20,7 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    map<string, int> m_freq;
+    unordered_map<string, int> hashm_freq;
     vector<pair<string, int>> v;
 
     int N, M;
@@ -29,17 +29,10 @@ int main() {
         string word;
         cin >> word;
         if (word.size() >= M) {
-            auto it = m_freq.find(word);
-            if (it != m_freq.end()) {
-                it->second++;
-            } else {
-                m_freq.insert({word, 1});
-            }
+            hashm_freq[word]++;
         }
     }
-
-    v.reserve(m_freq.size());
-    for (const auto& it : m_freq)
+    for (const auto& it : hashm_freq)
         v.emplace_back(it.first, it.second);
     sort(v.begin(), v.end(), cmp);
     for (const auto& it : v)
