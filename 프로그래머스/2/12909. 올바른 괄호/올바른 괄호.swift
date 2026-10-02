@@ -1,23 +1,23 @@
 import Foundation
 
-func solution(_ s: String) -> Bool {
+func solution(_ s:String) -> Bool
+{
     var stack: [Character] = []
     
     for c in s {
-        if c == "(" {
-            stack.append(c)
-        } else {
-            if !stack.isEmpty {
-                stack.removeLast()
-            } else {
+        if c == ")" {
+            if stack.isEmpty {
                 return false
             }
+            stack.removeLast()
+            
+        } else {
+            stack.append(c)
         }
     }
     
-    if !stack.isEmpty {
-        return false
+    if stack.isEmpty {
+        return true
     }
-    
-    return true
+    return false
 }
