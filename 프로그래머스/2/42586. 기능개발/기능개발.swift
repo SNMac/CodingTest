@@ -1,27 +1,34 @@
 import Foundation
 
-func solution(_ progresses: [Int], _ speeds: [Int]) -> [Int] {
-    
-    var inProgressArr: [Int] = progresses
-    var etaArr: [Int] = []
-    for (index, progress) in inProgressArr.enumerated() {
-        let eta: Double = Double(100 - progress) / (Double)(speeds[index])
-        etaArr.append(Int(eta.rounded(.up)))
+func solution(_ progresses:[Int], _ speeds:[Int]) -> [Int] {
+    var restProgresses: [Int] = []
+    for progress in progresses {
+        restProgresses.append(100 - progress)
     }
     
-    var deployment: [Int] = []
-    while !etaArr.isEmpty {
-        let first = etaArr.first!
-        etaArr.remove(at: 0)
-        etaArr = etaArr.map { $0 - first }
-        
-        var deploy = 1
-        while !etaArr.isEmpty && etaArr.first! <= 0 {
-            deploy += 1
-            etaArr.removeFirst()
+    var restDays: [Int] = []
+    for (i, rest) in restProgresses.enumerated() {
+        var daysToDone = rest / speeds[i]
+        if rest % speeds[i] > 0 {
+            daysToDone += 1
         }
-        deployment.append(deploy)
+        restDays.append(daysToDone)
     }
     
-    return deployment
+    var result: [Int] = []    
+    var prevDay = restDays.removeFirst()
+    var deployCount = 1
+    while !restDays.isEmpty {
+        let day = restDays.removeFirst()
+        if day <= prevDay {
+            deployCount += 1
+        } else {
+            result.append(deployCount)
+            deployCount = 1
+            prevDay = day
+        }
+    }
+    result.append(deployCount)
+    
+    return result
 }
