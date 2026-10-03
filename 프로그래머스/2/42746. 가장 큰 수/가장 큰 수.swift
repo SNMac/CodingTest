@@ -1,9 +1,9 @@
 import Foundation
 
-func solution(_ numbers: [Int]) -> String {
-    let strNums = numbers.map { String($0) }
+func solution(_ numbers:[Int]) -> String {
+    let sortedNumStr = numbers.map { String($0) }
+        .sorted { $0 + $1 > $1 + $0 }
     
-    let sorted = strNums.sorted(by: { $0 + $1 > $1 + $0 })
-    
-    return sorted[0] == "0" ? "0" : sorted.joined()
+    if sortedNumStr.first == "0" { return "0" }
+    return sortedNumStr.joined()
 }
