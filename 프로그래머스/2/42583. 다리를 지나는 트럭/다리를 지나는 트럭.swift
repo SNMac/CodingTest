@@ -1,34 +1,22 @@
 import Foundation
 
-func solution(_ bridge_length: Int, _ weight: Int, _ truck_weights: [Int]) -> Int {
-    var waitingTrucks: [Int] = truck_weights
-    var crossingTrucks: [(truckWeight: Int, elapsed: Int)] = []
-    var crossedTrucks: [Int] = []
-    var timeElapsed = 0
+func solution(_ bridge_length:Int, _ weight:Int, _ truck_weights:[Int]) -> Int {
+    var onBridgeQ: [(Int, Int)] = []  // (truck_weights, onBridgeTime)
+    var waitQ: [Int] = truck_weights
     
-    while crossedTrucks.count != truck_weights.count {
-        // 경과 시간 추가
+    var timeElapsed = 1
+    onBridgeQ.append((waitQ.first!, 1))
+    waitQ.removeFirst()
+    
+    while !onBridgeQ.isEmpty {
         timeElapsed += 1
-        for i in crossingTrucks.indices {
-            crossingTrucks[i].elapsed += 1
-        }
+        onBridgeQ = onBridgeQ.map { ($0.0, $0.1 + 1) }
+        onBridgeQ.removeAll(where: { $0.1 > bridge_length })
         
-        // 트럭이 다리를 지났는지 확인
-        if let first = crossingTrucks.first, first.elapsed == bridge_length {
-            crossedTrucks.append(first.truckWeight)
-            crossingTrucks.removeFirst()
-        }
-
-        // 다리에 트럭이 올라갈 수 있는지 확인
-        if crossingTrucks.count < bridge_length {
-            let crossingTruckWeights = crossingTrucks.reduce(0, { $0 + $1.truckWeight })
-            if crossingTruckWeights < weight {
-                if let first = waitingTrucks.first {
-                    if crossingTruckWeights + first <= weight {
-                    waitingTrucks.removeFirst()
-                    crossingTrucks.append((first, 0))
-                    }
-                }
+        if let next = waitQ.first {
+            if onBridgeQ.count + 1 <= bridge_length && onBridgeQ.reduce(0, { $0 + $1.0 }) + next <= weight {
+                onBridgeQ.append((next, 1))
+                waitQ.removeFirst()
             }
         }
     }
